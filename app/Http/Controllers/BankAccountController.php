@@ -22,11 +22,10 @@ class BankAccountController extends Controller
             'email' => 'required|email',
             'phone_number' => 'required',
             'balance' => 'required|numeric',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive,blocked'
         ]);
-
         BankAccount::create($data);
-        return redirect()->route('bank-account-index')->with('success', 'Tài khoản ngân hàng đã được tạo thành công!');
+        return redirect()->route('bank-account-index')->with('success','Tai khoan da duoc tao than cong!');
     }
     public function edit($id){
         $bankAccounts = BankAccount::findorFail($id);
@@ -39,7 +38,7 @@ class BankAccountController extends Controller
             'email' => 'required|email',
             'phone_number' => 'required',
             'balance' => 'required|numeric',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive,blocked'
         ]);
         $bankAccounts = BankAccount::findorFail($id);
         $bankAccounts->update($data);
@@ -49,6 +48,6 @@ class BankAccountController extends Controller
     {
         $bankAccounts = BankAccount::findorFail($id);
         $bankAccounts->delete();
-        return redirect()->route('bank-account-index')->with('success','Tai khoan da duoc xoa thanh cong!');
+        return redirect()->route('bank-account-index')->with('success','tai khoan da duoc xoa thang cong');
     }
 }
